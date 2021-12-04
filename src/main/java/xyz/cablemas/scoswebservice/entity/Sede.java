@@ -17,32 +17,29 @@ import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor 
+@NoArgsConstructor
 @Entity
 @Table(name = "sedes")
-public class Sede implements Serializable{
+public class Sede implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long sedeId;
-	
+
 	@Column
 	private String nombre;
-	
+
 	@Column
 	private Boolean activo;
-	
+
 	@Column(updatable = false)
-	private LocalDateTime fechaCreacion;
-	
+	private LocalDateTime fechaDeCreacion;
+
 	@PrePersist
 	protected void onPersist() {
-		fechaCreacion = LocalDateTime.now();
+		fechaDeCreacion = LocalDateTime.now();
 	}
-	
-	
-	
 
 }
