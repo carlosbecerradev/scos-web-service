@@ -8,6 +8,10 @@ public interface UsuarioService {
 
 	void save(Usuario usuario);
 
+	void deleteById(Long usuarioId);
+
 	Collection<Usuario> findAll();
+
+	Usuario findById(Long usuarioId);
 
 }
