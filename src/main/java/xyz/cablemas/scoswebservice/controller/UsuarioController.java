@@ -25,30 +25,30 @@ public class UsuarioController {
 	private UsuarioService usuarioService;
 
 	@GetMapping
-	public ResponseEntity<Collection<Usuario>> getUsuarios() {
+	public ResponseEntity<Collection<Usuario>> obtenerTodos() {
 		return new ResponseEntity<Collection<Usuario>>(usuarioService.findAll(), HttpStatus.OK);
 	}
 
 	@GetMapping("/{usuarioId}")
-	public ResponseEntity<Usuario> getUsuarioById(@PathVariable(name = "usuarioId") Long usuarioId) {
+	public ResponseEntity<Usuario> obtenerUnoPorId(@PathVariable(name = "usuarioId") Long usuarioId) {
 		return new ResponseEntity<Usuario>(usuarioService.findById(usuarioId), HttpStatus.OK);
 	}
 
 	@PostMapping
-	public ResponseEntity<HttpStatus> insertUsuario(@RequestBody Usuario usuario) {
+	public ResponseEntity<HttpStatus> registrar(@RequestBody Usuario usuario) {
 		usuarioService.save(usuario);
 		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
 	}
 
 	@PutMapping("/{usuarioId}")
-	public ResponseEntity<HttpStatus> updateUsuario(@RequestBody Usuario usuario,
+	public ResponseEntity<HttpStatus> actualizar(@RequestBody Usuario usuario,
 			@PathVariable(name = "usuarioId") Long usuarioId) {
 		usuarioService.save(usuario);
 		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
 	}
 
-	@DeleteMapping
-	public ResponseEntity<HttpStatus> deleteUsuarioById(@PathVariable(name = "usuarioId") Long usuarioId) {
+	@DeleteMapping("/{usuarioId}")
+	public ResponseEntity<HttpStatus> eliminarPorId(@PathVariable(name = "usuarioId") Long usuarioId) {
 		usuarioService.deleteById(usuarioId);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
