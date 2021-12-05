@@ -40,13 +40,13 @@ public class Usuario implements Serializable {
 	@Column(length = 20, nullable = false)
 	private Rol rol;
 
-	@Column(nullable = false, columnDefinition = "bit")
+	@Column(nullable = false)
 	private Boolean activo;
 
 	@Column(length = 300, nullable = true)
 	private String tokenDeNotificacion;
 
-	@Column(updatable = false)
+	@Column(updatable = false, nullable = false)
 	private LocalDateTime fechaDeCreacion;
 
 	@PrePersist

@@ -28,13 +28,13 @@ public class Sede implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long sedeId;
 
-	@Column
+	@Column(length = 20, nullable = false, unique = true)
 	private String nombre;
 
-	@Column
+	@Column(nullable = false)
 	private Boolean activo;
 
-	@Column(updatable = false)
+	@Column(updatable = false, nullable = false)
 	private LocalDateTime fechaDeCreacion;
 
 	@PrePersist

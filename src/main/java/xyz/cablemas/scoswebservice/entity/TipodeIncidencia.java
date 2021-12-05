@@ -19,29 +19,27 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "tipodeincidencias")
+@Table(name = "tipos_de_incidencia")
 public class TipodeIncidencia implements Serializable {
-	
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long tipodeincidenciaId;
-	
-	@Column
+	private Long tipoDeIncidenciaId;
+
+	@Column(length = 20, nullable = false)
 	private String nombre;
-	@Column
+
+	@Column(nullable = false)
 	private Boolean activo;
-	
-	@Column(updatable = false)
+
+	@Column(updatable = false, nullable = false)
 	private LocalDateTime fechaDeCreacion;
-	
-	
+
 	@PrePersist
 	protected void onPersist() {
 		fechaDeCreacion = LocalDateTime.now();
 	}
-
 
 }

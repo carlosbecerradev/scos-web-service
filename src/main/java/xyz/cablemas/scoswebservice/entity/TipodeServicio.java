@@ -15,30 +15,28 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "tipodeservicios")
-public class TipodeServicio implements Serializable{
+@Table(name = "tipos_de_servicio")
+public class TipodeServicio implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long tipodeservicioId;
-	
-	@Column
+
+	@Column(length = 20, nullable = false, unique = true)
 	private String nombre;
-	
-	@Column
+
+	@Column(nullable = false)
 	private Boolean activo;
-	
-	@Column(updatable = false)
+
+	@Column(updatable = false, nullable = false)
 	private LocalDateTime fechaDeCreacion;
-	
-	
+
 	@PrePersist
 	protected void onPersist() {
 		fechaDeCreacion = LocalDateTime.now();
