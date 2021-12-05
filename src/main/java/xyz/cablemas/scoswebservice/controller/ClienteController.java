@@ -25,30 +25,30 @@ public class ClienteController {
 	private ClienteService clienteService;
 
 	@GetMapping
-	public ResponseEntity<Collection<Cliente>> getAll() {
+	public ResponseEntity<Collection<Cliente>> obtenerTodos() {
 		return new ResponseEntity<>(clienteService.findAll(), HttpStatus.OK);
 	}
 
 	@GetMapping("/{clienteId}")
-	public ResponseEntity<Cliente> getOneById(@PathVariable(name = "clienteId") Long clienteId) {
+	public ResponseEntity<Cliente> obtenerUnoPorId(@PathVariable(name = "clienteId") Long clienteId) {
 		return new ResponseEntity<>(clienteService.findById(clienteId), HttpStatus.OK);
 	}
 
 	@PostMapping
-	public ResponseEntity<HttpStatus> insert(@RequestBody Cliente cliente) {
+	public ResponseEntity<HttpStatus> registrar(@RequestBody Cliente cliente) {
 		clienteService.save(cliente);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
 	@PutMapping("/{clienteId}")
-	public ResponseEntity<HttpStatus> update(@RequestBody Cliente cliente,
+	public ResponseEntity<HttpStatus> actualizar(@RequestBody Cliente cliente,
 			@PathVariable(name = "clienteId") Long clienteId) {
 		clienteService.save(cliente);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{clienteId}")
-	public ResponseEntity<HttpStatus> deleteById(@PathVariable(name = "clienteId") Long clienteId) {
+	public ResponseEntity<HttpStatus> eliminarPorId(@PathVariable(name = "clienteId") Long clienteId) {
 		clienteService.deleteById(clienteId);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}

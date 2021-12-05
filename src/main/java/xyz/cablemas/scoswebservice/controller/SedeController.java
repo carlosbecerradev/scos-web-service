@@ -21,12 +21,12 @@ public class SedeController {
 	private final SedeService sedeService;
 
 	@GetMapping
-	public ResponseEntity<?> getAll() {
+	public ResponseEntity<?> obtenerTodos() {
 		return new ResponseEntity<>(sedeService.findAll(), HttpStatus.OK);
 	}
 
 	@GetMapping("/{sedeId}")
-	public ResponseEntity<?> getOneById(@PathVariable Long sedeId) {
+	public ResponseEntity<?> obtenerUnoPorId(@PathVariable Long sedeId) {
 		Sede sede = sedeService.findById(sedeId);
 
 		if (sede != null) {
@@ -37,7 +37,7 @@ public class SedeController {
 	}
 
 	@PostMapping
-	public ResponseEntity<?> insert(@RequestBody Sede sede) {
+	public ResponseEntity<?> registrar(@RequestBody Sede sede) {
 		sedeService.insert(sede);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}

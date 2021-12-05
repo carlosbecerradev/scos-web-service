@@ -23,12 +23,12 @@ public class TipodeIncidenciaController {
 	private TipodeIncidenciaService tipodeincidenciaService;
 
 	@GetMapping
-	public ResponseEntity<?> getAll() {
+	public ResponseEntity<?> obtenerTodos() {
 		return new ResponseEntity<>(tipodeincidenciaService.findAll(), HttpStatus.OK);
 	}
 
 	@GetMapping("/{tipodeincidenciaId}")
-	public ResponseEntity<?> getOneById(@PathVariable Long tipodeincidenciaId) {
+	public ResponseEntity<?> obtenerUnoPorId(@PathVariable Long tipodeincidenciaId) {
 		TipodeIncidencia tipodeincidencia = tipodeincidenciaService.findById(tipodeincidenciaId);
 
 		if (tipodeincidencia != null) {
@@ -39,13 +39,13 @@ public class TipodeIncidenciaController {
 	}
 
 	@PostMapping
-	public ResponseEntity<?> insert(@RequestBody TipodeIncidencia tipodeincidencia) {
+	public ResponseEntity<?> registrar(@RequestBody TipodeIncidencia tipodeincidencia) {
 		tipodeincidenciaService.insert(tipodeincidencia);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 
 	@PutMapping("/{tipodeincidenciaId}")
-	public ResponseEntity<?> update(@PathVariable Long tipodeincidenciaId,
+	public ResponseEntity<?> actualizar(@PathVariable Long tipodeincidenciaId,
 			@RequestBody TipodeIncidencia tipodeincidencia) {
 		TipodeIncidencia tipodeincidenciaDb = tipodeincidenciaService.findById(tipodeincidenciaId);
 
@@ -62,7 +62,7 @@ public class TipodeIncidenciaController {
 	}
 
 	@DeleteMapping("/{tipodeincidenciaId}")
-	public ResponseEntity<?> deleteById(@PathVariable Long tipodeincidenciaId) {
+	public ResponseEntity<?> eliminarPorId(@PathVariable Long tipodeincidenciaId) {
 		TipodeIncidencia tipodeincidenciaDb = tipodeincidenciaService.findById(tipodeincidenciaId);
 
 		if (tipodeincidenciaDb != null) {
