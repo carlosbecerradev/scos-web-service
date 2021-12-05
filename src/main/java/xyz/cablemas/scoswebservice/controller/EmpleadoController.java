@@ -25,30 +25,30 @@ public class EmpleadoController {
 	private EmpleadoService empleadoService;
 
 	@GetMapping
-	public ResponseEntity<Collection<Empleado>> getEmpleados() {
+	public ResponseEntity<Collection<Empleado>> getAll() {
 		return new ResponseEntity<>(empleadoService.findAll(), HttpStatus.OK);
 	}
 
 	@GetMapping("/{empleadoId}")
-	public ResponseEntity<Empleado> getEmpleadoById(@PathVariable(name = "empleadoId") Long empleadoId) {
+	public ResponseEntity<Empleado> getOneById(@PathVariable(name = "empleadoId") Long empleadoId) {
 		return new ResponseEntity<>(empleadoService.findById(empleadoId), HttpStatus.OK);
 	}
 
 	@PostMapping
-	public ResponseEntity<HttpStatus> insertEmpleado(@RequestBody Empleado empleado) {
+	public ResponseEntity<HttpStatus> insert(@RequestBody Empleado empleado) {
 		empleadoService.save(empleado);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
 	@PutMapping("/{empleadoId}")
-	public ResponseEntity<HttpStatus> updateEmpleado(@RequestBody Empleado empleado,
+	public ResponseEntity<HttpStatus> update(@RequestBody Empleado empleado,
 			@PathVariable(name = "empleadoId") Long empleadoId) {
 		empleadoService.save(empleado);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@DeleteMapping
-	public ResponseEntity<HttpStatus> deleteEmpleadoById(@PathVariable(name = "empleadoId") Long empleadoId) {
+	public ResponseEntity<HttpStatus> deleteById(@PathVariable(name = "empleadoId") Long empleadoId) {
 		empleadoService.deleteById(empleadoId);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
