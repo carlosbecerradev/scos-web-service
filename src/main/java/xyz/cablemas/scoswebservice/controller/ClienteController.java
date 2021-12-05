@@ -23,35 +23,34 @@ public class ClienteController {
 
 	@Autowired
 	private ClienteService clienteService;
-	
-	
-	@GetMapping("/listar")
-	public ResponseEntity<Collection<Cliente>> getEmpleados() {
+
+	@GetMapping
+	public ResponseEntity<Collection<Cliente>> getAll() {
 		return new ResponseEntity<>(clienteService.findAll(), HttpStatus.OK);
 	}
 
-	@GetMapping("/buscar/{empleadoId}")
-	public ResponseEntity<Cliente> getEmpleadoById(@PathVariable(name = "clienteId") Long clienteId) {
+	@GetMapping("/{clienteId}")
+	public ResponseEntity<Cliente> getOneById(@PathVariable(name = "clienteId") Long clienteId) {
 		return new ResponseEntity<>(clienteService.findById(clienteId), HttpStatus.OK);
 	}
 
-	@PostMapping("/agregar")
-	public ResponseEntity<HttpStatus> insertCliente(@RequestBody Cliente cliente) {
+	@PostMapping
+	public ResponseEntity<HttpStatus> insert(@RequestBody Cliente cliente) {
 		clienteService.save(cliente);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
-	@PutMapping("/editar/{clienteId}")
-	public ResponseEntity<HttpStatus> updateEmpleado(@RequestBody Cliente cliente,
+	@PutMapping("/{clienteId}")
+	public ResponseEntity<HttpStatus> update(@RequestBody Cliente cliente,
 			@PathVariable(name = "clienteId") Long clienteId) {
 		clienteService.save(cliente);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
-	@DeleteMapping("/eliminar")
-	public ResponseEntity<HttpStatus> deleteClienteById(@PathVariable(name = "clienteId") Long clienteId) {
+	@DeleteMapping
+	public ResponseEntity<HttpStatus> deleteById(@PathVariable(name = "clienteId") Long clienteId) {
 		clienteService.deleteById(clienteId);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
-	
+
 }
