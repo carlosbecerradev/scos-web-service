@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,7 +36,8 @@ public class Cliente implements Serializable {
 	@Column(length = 50, nullable = false)
 	private String apellidos;
 
-	@Column
+	@Column(nullable = false)
+	@DateTimeFormat(iso = ISO.DATE)
 	private LocalDate fechaNacimiento;
 
 	@Column(length = 1, nullable = false)
