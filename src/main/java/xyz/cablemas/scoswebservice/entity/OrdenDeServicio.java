@@ -40,7 +40,7 @@ public class OrdenDeServicio implements Serializable {
 
 	@DateTimeFormat(iso = ISO.DATE_TIME)
 	@Column(nullable = true)
-	private LocalDateTime fechaLDeLlegada;
+	private LocalDateTime fechaDeLlegada;
 
 	@DateTimeFormat(iso = ISO.DATE_TIME)
 	@Column(nullable = true)
