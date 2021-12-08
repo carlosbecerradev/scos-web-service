@@ -23,55 +23,55 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "ordenes_de_servicio")
-public class OrdenesDeServicio implements Serializable {
+public class OrdenDeServicio implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long ordenesId;
+	private Long ordenDeServicioId;
 
 	@Column(nullable = false, updatable = false)
-	private LocalDateTime fechaCreacion;
+	private LocalDateTime fechaDeCreacion;
 
 	@DateTimeFormat(iso = ISO.DATE_TIME)
 	@Column(nullable = true)
-	private LocalDateTime fechaAsignacion;
+	private LocalDateTime fechaDeAsignacion;
 
 	@DateTimeFormat(iso = ISO.DATE_TIME)
 	@Column(nullable = true)
-	private LocalDateTime fechaLlegada;
+	private LocalDateTime fechaLDeLlegada;
 
 	@DateTimeFormat(iso = ISO.DATE_TIME)
 	@Column(nullable = true)
-	private LocalDateTime fechaResolucion;
+	private LocalDateTime fechaDeResolucion;
 
 	@DateTimeFormat(iso = ISO.DATE_TIME)
 	@Column(nullable = true)
-	private LocalDateTime fechaCancelacion;
+	private LocalDateTime fechaDeCancelacion;
 
 	@DateTimeFormat(iso = ISO.DATE_TIME)
 	@Column(nullable = true)
-	private LocalDateTime fechaCierre;
+	private LocalDateTime fechaDeCierre;
 
 	@Column(length = 15, nullable = false)
 	private String estado;
 
 	@Column(length = 255, nullable = true)
-	private String descripcionProblema;
+	private String descripcionDelProblema;
 
 	@Column(length = 255, nullable = true)
 	private String imagenUrl;
 
-	@Column(length = 18, nullable = true)
-	private String motivoCancelacion;
+	@Column(length = 255, nullable = true)
+	private String motivoDeCancelacion;
 
 	@Column(nullable = false)
 	private boolean revisada;
 
 	@PrePersist
 	protected void onPersist() {
-		fechaCreacion = LocalDateTime.now();
+		fechaDeCreacion = LocalDateTime.now();
 	}
 
 }

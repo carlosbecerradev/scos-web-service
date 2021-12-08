@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "tipos_de_incidencia")
-public class TipodeIncidencia implements Serializable {
+public class TipoDeIncidencia implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

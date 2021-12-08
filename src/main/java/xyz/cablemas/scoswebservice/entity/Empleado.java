@@ -36,13 +36,13 @@ public class Empleado implements Serializable {
 	private String fotoUrl;
 
 	@Column(length = 9, nullable = false)
-	private String nroCarnet;
+	private String nroDeCarnet;
 
 	@Column(length = 8, nullable = false)
 	private String dni;
 
 	@Column(length = 9, nullable = false)
-	private String nroTelefonoMovil;
+	private String nroDeTelefonoMovil;
 
 	@Column(length = 1, nullable = false)
 	private Character sexo;

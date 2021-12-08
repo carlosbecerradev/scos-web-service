@@ -38,7 +38,7 @@ public class Cliente implements Serializable {
 
 	@Column(nullable = false)
 	@DateTimeFormat(iso = ISO.DATE)
-	private LocalDate fechaNacimiento;
+	private LocalDate fechaDeNacimiento;
 
 	@Column(length = 1, nullable = false)
 	private Character sexo;
@@ -47,10 +47,10 @@ public class Cliente implements Serializable {
 	private String dni;
 
 	@Column(length = 9, nullable = false, unique = true)
-	private String nroTelefonoMovil;
+	private String nroDeTelefonoMovil;
 
 	@Column(length = 7, nullable = true)
-	private String nroTelefonoFijo;
+	private String nroDeTelefonoFijo;
 
 	@Column(length = 255, nullable = false)
 	private String direccion;

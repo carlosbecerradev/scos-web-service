@@ -26,7 +26,7 @@ public class EncuestaDeAtencion implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer encuestaId;
+	private Long encuestaDeAtencionId;
 
 	@Column(length = 10, nullable = false)
 	private String valoracion;

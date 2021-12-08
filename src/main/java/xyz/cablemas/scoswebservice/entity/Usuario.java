@@ -31,7 +31,7 @@ public class Usuario implements Serializable {
 	private Long usuarioId;
 
 	@Column(length = 20, nullable = false, unique = true)
-	private String nombreUsuario;
+	private String nombreDeUsuario;
 
 	@Column(length = 60, nullable = false)
 	private String contrasenia;

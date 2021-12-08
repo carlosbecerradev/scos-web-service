@@ -26,9 +26,9 @@ public class ConstanciaDeVisita implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long constanciaId;
+	private Long constanciaDeVisitaId;
 
-	@Column(length = 255, nullable = true)
+	@Column(length = 255, nullable = false)
 	private String imagenUrl;
 
 	@Column(updatable = false, nullable = false)

@@ -27,7 +27,7 @@ public class Ubicacion implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer ubicacionId;
+	private Long ubicacionId;
 
 	@Column(length = 100, nullable = false)
 	private String direccion;

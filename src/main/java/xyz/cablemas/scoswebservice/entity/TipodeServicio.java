@@ -20,13 +20,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "tipos_de_servicio")
-public class TipodeServicio implements Serializable {
+public class TipoDeServicio implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long tipodeservicioId;
+	private Long tipoDeServicioId;
 
 	@Column(length = 20, nullable = false, unique = true)
 	private String nombre;
