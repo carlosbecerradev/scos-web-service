@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AllArgsConstructor;
-import xyz.cablemas.scoswebservice.entity.TipodeServicio;
+import xyz.cablemas.scoswebservice.entity.TipoDeServicio;
 import xyz.cablemas.scoswebservice.repository.SedeRepository;
 import xyz.cablemas.scoswebservice.repository.TipodeServicioRepository;
 import xyz.cablemas.scoswebservice.service.TipodeServicioService;
@@ -21,14 +21,14 @@ public class TipodeServicioServiceImpl implements TipodeServicioService{
 	
 	@Override
 	@Transactional
-	public void insert(TipodeServicio tipodeservicio) {
+	public void insert(TipoDeServicio tipodeservicio) {
 		repository.save(tipodeservicio);
 		
 	}
 
 	@Override
 	@Transactional
-	public void update(TipodeServicio tipodeservicio) {
+	public void update(TipoDeServicio tipodeservicio) {
 		repository.save(tipodeservicio);
 		
 	}
@@ -42,14 +42,14 @@ public class TipodeServicioServiceImpl implements TipodeServicioService{
 
 	@Override
 	@Transactional(readOnly=true)
-	public TipodeServicio findById(Long tipodeservicioId) {
+	public TipoDeServicio findById(Long tipodeservicioId) {
 		
 		return repository.findById(tipodeservicioId).orElse(null);
 	}
 
 	@Override
 	@Transactional(readOnly=true)
-	public Collection<TipodeServicio> findAll() {
+	public Collection<TipoDeServicio> findAll() {
 		
 		return repository.findAll();
 	}

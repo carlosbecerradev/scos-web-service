@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import xyz.cablemas.scoswebservice.entity.TipodeIncidencia;
+import xyz.cablemas.scoswebservice.entity.TipoDeIncidencia;
 import xyz.cablemas.scoswebservice.service.TipodeIncidenciaService;
 
 @RestController
@@ -29,7 +29,7 @@ public class TipodeIncidenciaController {
 
 	@GetMapping("/{tipodeincidenciaId}")
 	public ResponseEntity<?> obtenerUnoPorId(@PathVariable Long tipodeincidenciaId) {
-		TipodeIncidencia tipodeincidencia = tipodeincidenciaService.findById(tipodeincidenciaId);
+		TipoDeIncidencia tipodeincidencia = tipodeincidenciaService.findById(tipodeincidenciaId);
 
 		if (tipodeincidencia != null) {
 			return new ResponseEntity<>(tipodeincidencia, HttpStatus.OK);
@@ -39,15 +39,15 @@ public class TipodeIncidenciaController {
 	}
 
 	@PostMapping
-	public ResponseEntity<?> registrar(@RequestBody TipodeIncidencia tipodeincidencia) {
+	public ResponseEntity<?> registrar(@RequestBody TipoDeIncidencia tipodeincidencia) {
 		tipodeincidenciaService.insert(tipodeincidencia);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 
 	@PutMapping("/{tipodeincidenciaId}")
 	public ResponseEntity<?> actualizar(@PathVariable Long tipodeincidenciaId,
-			@RequestBody TipodeIncidencia tipodeincidencia) {
-		TipodeIncidencia tipodeincidenciaDb = tipodeincidenciaService.findById(tipodeincidenciaId);
+			@RequestBody TipoDeIncidencia tipodeincidencia) {
+		TipoDeIncidencia tipodeincidenciaDb = tipodeincidenciaService.findById(tipodeincidenciaId);
 
 		if (tipodeincidenciaDb != null) {
 			tipodeincidenciaDb.setNombre(tipodeincidencia.getNombre());
@@ -63,7 +63,7 @@ public class TipodeIncidenciaController {
 
 	@DeleteMapping("/{tipodeincidenciaId}")
 	public ResponseEntity<?> eliminarPorId(@PathVariable Long tipodeincidenciaId) {
-		TipodeIncidencia tipodeincidenciaDb = tipodeincidenciaService.findById(tipodeincidenciaId);
+		TipoDeIncidencia tipodeincidenciaDb = tipodeincidenciaService.findById(tipodeincidenciaId);
 
 		if (tipodeincidenciaDb != null) {
 			tipodeincidenciaService.delete(tipodeincidenciaId);

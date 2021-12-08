@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import xyz.cablemas.scoswebservice.entity.TipodeServicio;
+import xyz.cablemas.scoswebservice.entity.TipoDeServicio;
 import xyz.cablemas.scoswebservice.service.TipodeServicioService;
 
 @RestController
@@ -29,7 +29,7 @@ public class TipodeServicioController {
 
 	@GetMapping("/{tipodeservicioId}")
 	public ResponseEntity<?> obtenerUnoPorId(@PathVariable Long tipodeservicioId) {
-		TipodeServicio tipodeservicio = tipodeservicioService.findById(tipodeservicioId);
+		TipoDeServicio tipodeservicio = tipodeservicioService.findById(tipodeservicioId);
 
 		if (tipodeservicio != null) {
 			return new ResponseEntity<>(tipodeservicio, HttpStatus.OK);
@@ -39,15 +39,15 @@ public class TipodeServicioController {
 	}
 
 	@PostMapping
-	public ResponseEntity<?> registrar(@RequestBody TipodeServicio tipodeservicio) {
+	public ResponseEntity<?> registrar(@RequestBody TipoDeServicio tipodeservicio) {
 		tipodeservicioService.insert(tipodeservicio);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 
 	@PutMapping("/{tipodeservicioId}")
 	public ResponseEntity<?> actualizar(@PathVariable Long tipodeservicioId,
-			@RequestBody TipodeServicio tipodeservicio) {
-		TipodeServicio tipodeservicioDb = tipodeservicioService.findById(tipodeservicioId);
+			@RequestBody TipoDeServicio tipodeservicio) {
+		TipoDeServicio tipodeservicioDb = tipodeservicioService.findById(tipodeservicioId);
 
 		if (tipodeservicioDb != null) {
 			tipodeservicioDb.setNombre(tipodeservicio.getNombre());
@@ -63,7 +63,7 @@ public class TipodeServicioController {
 
 	@DeleteMapping("/{tipodeservicioId}")
 	public ResponseEntity<?> eliminarPorId(@PathVariable Long tipodeservicioId) {
-		TipodeServicio tipodeservicioDb = tipodeservicioService.findById(tipodeservicioId);
+		TipoDeServicio tipodeservicioDb = tipodeservicioService.findById(tipodeservicioId);
 
 		if (tipodeservicioDb != null) {
 			tipodeservicioService.delete(tipodeservicioId);

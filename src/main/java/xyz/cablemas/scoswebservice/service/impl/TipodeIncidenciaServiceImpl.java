@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import xyz.cablemas.scoswebservice.entity.TipodeIncidencia;
+import xyz.cablemas.scoswebservice.entity.TipoDeIncidencia;
 import xyz.cablemas.scoswebservice.repository.TipodeIncidenciaRepository;
 import xyz.cablemas.scoswebservice.service.TipodeIncidenciaService;
 
@@ -18,14 +18,14 @@ public class TipodeIncidenciaServiceImpl implements TipodeIncidenciaService {
 	
 	@Override
 	@Transactional
-	public void insert(TipodeIncidencia tipodeincidencia) {
+	public void insert(TipoDeIncidencia tipodeincidencia) {
 		repository.save(tipodeincidencia);
 		
 	}
 
 	@Override
 	@Transactional
-	public void update(TipodeIncidencia tipodeincidencia) {
+	public void update(TipoDeIncidencia tipodeincidencia) {
 		repository.save(tipodeincidencia);
 		
 	}
@@ -39,14 +39,14 @@ public class TipodeIncidenciaServiceImpl implements TipodeIncidenciaService {
 
 	@Override
 	@Transactional(readOnly=true)
-	public TipodeIncidencia findById(Long tipodeincidenciaId) {
+	public TipoDeIncidencia findById(Long tipodeincidenciaId) {
 		
 		return repository.findById(tipodeincidenciaId).orElse(null);
 	}
 
 	@Override
 	@Transactional(readOnly=true)
-	public Collection<TipodeIncidencia> findAll() {
+	public Collection<TipoDeIncidencia> findAll() {
 		
 		return repository.findAll();
 	}
