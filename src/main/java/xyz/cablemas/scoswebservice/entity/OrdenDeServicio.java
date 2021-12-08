@@ -3,11 +3,14 @@ package xyz.cablemas.scoswebservice.entity;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
@@ -68,6 +71,18 @@ public class OrdenDeServicio implements Serializable {
 
 	@Column(nullable = false)
 	private boolean revisada;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "tipo_de_incidencia_id", nullable = false)
+	private TipoDeIncidencia tipoDeIncidencia;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "cliente_id", nullable = false)
+	private Cliente cliente;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "empleado_id", nullable = false)
+	private Empleado empleado;
 
 	@PrePersist
 	protected void onPersist() {

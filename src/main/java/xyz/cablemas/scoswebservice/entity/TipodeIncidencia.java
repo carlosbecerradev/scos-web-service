@@ -3,11 +3,14 @@ package xyz.cablemas.scoswebservice.entity;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
@@ -36,6 +39,10 @@ public class TipoDeIncidencia implements Serializable {
 
 	@Column(updatable = false, nullable = false)
 	private LocalDateTime fechaDeCreacion;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "tipo_de_servicio_id", nullable = false)
+	private TipoDeServicio tipoDeServicio;
 
 	@PrePersist
 	protected void onPersist() {

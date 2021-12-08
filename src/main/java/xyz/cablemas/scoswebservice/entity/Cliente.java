@@ -3,11 +3,15 @@ package xyz.cablemas.scoswebservice.entity;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -54,5 +58,13 @@ public class Cliente implements Serializable {
 
 	@Column(length = 255, nullable = false)
 	private String direccion;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "usuario_id", nullable = false, unique = true)
+	private Usuario usuario;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "tipo_de_servicio_id", nullable = false)
+	private TipoDeServicio tipoDeServicio;
 
 }
