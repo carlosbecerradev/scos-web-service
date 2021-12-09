@@ -37,8 +37,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	@Transactional(readOnly = true)
 	public Usuario findById(Long usuarioId) {
-		return usuarioRepository.findById(usuarioId)
-				.orElseThrow(() -> new RuntimeException("Usuario with id: " + usuarioId + " is not found!"));
+		return usuarioRepository.findById(usuarioId).orElse(null);
 	}
 
 }

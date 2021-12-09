@@ -13,12 +13,11 @@ import xyz.cablemas.scoswebservice.service.SedeService;
 
 @Repository
 @AllArgsConstructor
-public class SedeServiceImpl implements SedeService{
-	
+public class SedeServiceImpl implements SedeService {
+
 	@Autowired
 	private SedeRepository repository;
-	
-	
+
 	@Override
 	@Transactional
 	public void insert(Sede sede) {
@@ -29,28 +28,24 @@ public class SedeServiceImpl implements SedeService{
 	@Transactional
 	public void update(Sede sede) {
 		repository.save(sede);
-		
 	}
 
 	@Override
 	@Transactional
 	public void delete(Long sedeId) {
 		repository.deleteById(sedeId);
-		
 	}
 
 	@Override
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
 	public Sede findById(Long sedeId) {
 		return repository.findById(sedeId).orElse(null);
-	}	
+	}
 
 	@Override
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
 	public Collection<Sede> findAll() {
 		return repository.findAll();
 	}
-
-	
 
 }

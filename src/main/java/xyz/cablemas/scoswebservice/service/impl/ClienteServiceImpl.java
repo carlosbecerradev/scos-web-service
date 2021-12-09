@@ -13,37 +13,32 @@ import xyz.cablemas.scoswebservice.service.ClienteService;
 
 @Service
 @AllArgsConstructor
-public class ClienteServiceImpl implements ClienteService{
+public class ClienteServiceImpl implements ClienteService {
 
 	@Autowired
 	private ClienteRepository repository;
-	
-	
+
 	@Override
 	@Transactional
 	public void save(Cliente cliente) {
 		repository.save(cliente);
-		
 	}
 
 	@Override
 	@Transactional
 	public void deleteById(Long clienteId) {
 		repository.deleteById(clienteId);
-		
 	}
 
 	@Override
 	@Transactional(readOnly = true)
 	public Collection<Cliente> findAll() {
-		
 		return repository.findAll();
 	}
 
 	@Override
 	@Transactional(readOnly = true)
 	public Cliente findById(Long clienteId) {
-		
 		return repository.findById(clienteId).orElse(null);
 	}
 

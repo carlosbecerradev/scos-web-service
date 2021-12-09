@@ -37,8 +37,7 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 	@Override
 	@Transactional(readOnly = true)
 	public Empleado findById(Long empleadoId) {
-		return empleadoRepository.findById(empleadoId)
-				.orElseThrow(() -> new RuntimeException("Empleado with id: " + empleadoId + " is not found!"));
+		return empleadoRepository.findById(empleadoId).orElse(null);
 	}
 
 }

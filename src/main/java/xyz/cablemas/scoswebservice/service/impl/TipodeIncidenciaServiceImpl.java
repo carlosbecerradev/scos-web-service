@@ -15,39 +15,34 @@ public class TipodeIncidenciaServiceImpl implements TipodeIncidenciaService {
 
 	@Autowired
 	private TipodeIncidenciaRepository repository;
-	
+
 	@Override
 	@Transactional
 	public void insert(TipoDeIncidencia tipodeincidencia) {
 		repository.save(tipodeincidencia);
-		
 	}
 
 	@Override
 	@Transactional
 	public void update(TipoDeIncidencia tipodeincidencia) {
 		repository.save(tipodeincidencia);
-		
 	}
 
 	@Override
 	@Transactional
 	public void delete(Long tipodeincidenciaId) {
 		repository.deleteById(tipodeincidenciaId);
-		
 	}
 
 	@Override
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
 	public TipoDeIncidencia findById(Long tipodeincidenciaId) {
-		
 		return repository.findById(tipodeincidenciaId).orElse(null);
 	}
 
 	@Override
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
 	public Collection<TipoDeIncidencia> findAll() {
-		
 		return repository.findAll();
 	}
 
