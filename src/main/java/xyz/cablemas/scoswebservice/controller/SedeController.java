@@ -2,6 +2,7 @@ package xyz.cablemas.scoswebservice.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import lombok.AllArgsConstructor;
 import xyz.cablemas.scoswebservice.entity.Sede;
 import xyz.cablemas.scoswebservice.service.SedeService;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/v1/sede")
 @AllArgsConstructor
