@@ -31,7 +31,11 @@ public class ClienteController {
 
 	@GetMapping("/{clienteId}")
 	public ResponseEntity<Cliente> obtenerUnoPorId(@PathVariable(name = "clienteId") Long clienteId) {
-		return new ResponseEntity<>(clienteService.findById(clienteId), HttpStatus.OK);
+		Cliente clienteEncontrado = clienteService.findById(clienteId);
+		if (clienteEncontrado != null) {
+			return new ResponseEntity<>(clienteEncontrado, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@PostMapping
@@ -43,14 +47,23 @@ public class ClienteController {
 	@PutMapping("/{clienteId}")
 	public ResponseEntity<HttpStatus> actualizar(@RequestBody Cliente cliente,
 			@PathVariable(name = "clienteId") Long clienteId) {
-		clienteService.save(cliente);
-		return new ResponseEntity<>(HttpStatus.OK);
+		Cliente clienteEncontrado = clienteService.findById(clienteId);
+		if (clienteEncontrado != null) {
+			cliente.setClienteId(clienteId);
+			clienteService.save(cliente);
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@DeleteMapping("/{clienteId}")
 	public ResponseEntity<HttpStatus> eliminarPorId(@PathVariable(name = "clienteId") Long clienteId) {
-		clienteService.deleteById(clienteId);
-		return new ResponseEntity<>(HttpStatus.OK);
+		Cliente clienteEncontrado = clienteService.findById(clienteId);
+		if (clienteEncontrado != null) {
+			clienteService.deleteById(clienteId);
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 }

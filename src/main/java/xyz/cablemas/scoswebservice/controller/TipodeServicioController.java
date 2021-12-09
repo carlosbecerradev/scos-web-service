@@ -30,11 +30,9 @@ public class TipodeServicioController {
 	@GetMapping("/{tipodeservicioId}")
 	public ResponseEntity<?> obtenerUnoPorId(@PathVariable Long tipodeservicioId) {
 		TipoDeServicio tipodeservicio = tipodeservicioService.findById(tipodeservicioId);
-
 		if (tipodeservicio != null) {
 			return new ResponseEntity<>(tipodeservicio, HttpStatus.OK);
 		}
-
 		return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 	}
 
@@ -48,28 +46,21 @@ public class TipodeServicioController {
 	public ResponseEntity<?> actualizar(@PathVariable Long tipodeservicioId,
 			@RequestBody TipoDeServicio tipodeservicio) {
 		TipoDeServicio tipodeservicioDb = tipodeservicioService.findById(tipodeservicioId);
-
 		if (tipodeservicioDb != null) {
-			tipodeservicioDb.setNombre(tipodeservicio.getNombre());
-			tipodeservicioDb.setActivo(tipodeservicio.getActivo());
-			tipodeservicioDb.setFechaDeCreacion(tipodeservicio.getFechaDeCreacion());
-
-			tipodeservicioService.update(tipodeservicioDb);
+			tipodeservicio.setTipoDeServicioId(tipodeservicioId);
+			tipodeservicioService.update(tipodeservicio);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		}
-
 		return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 	}
 
 	@DeleteMapping("/{tipodeservicioId}")
 	public ResponseEntity<?> eliminarPorId(@PathVariable Long tipodeservicioId) {
 		TipoDeServicio tipodeservicioDb = tipodeservicioService.findById(tipodeservicioId);
-
 		if (tipodeservicioDb != null) {
 			tipodeservicioService.delete(tipodeservicioId);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		}
-
 		return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 	}
 

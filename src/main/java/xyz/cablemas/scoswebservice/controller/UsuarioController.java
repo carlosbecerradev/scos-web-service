@@ -31,7 +31,11 @@ public class UsuarioController {
 
 	@GetMapping("/{usuarioId}")
 	public ResponseEntity<Usuario> obtenerUnoPorId(@PathVariable(name = "usuarioId") Long usuarioId) {
-		return new ResponseEntity<Usuario>(usuarioService.findById(usuarioId), HttpStatus.OK);
+		Usuario usuarioEncontrado = usuarioService.findById(usuarioId);
+		if (usuarioEncontrado != null) {
+			return new ResponseEntity<Usuario>(usuarioEncontrado, HttpStatus.OK);
+		}
+		return new ResponseEntity<Usuario>(HttpStatus.NOT_FOUND);
 	}
 
 	@PostMapping
@@ -43,14 +47,23 @@ public class UsuarioController {
 	@PutMapping("/{usuarioId}")
 	public ResponseEntity<HttpStatus> actualizar(@RequestBody Usuario usuario,
 			@PathVariable(name = "usuarioId") Long usuarioId) {
-		usuarioService.save(usuario);
-		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
+		Usuario usuarioEncontrado = usuarioService.findById(usuarioId);
+		if (usuarioEncontrado != null) {
+			usuario.setUsuarioId(usuarioId);
+			usuarioService.save(usuario);
+			return new ResponseEntity<HttpStatus>(HttpStatus.OK);
+		}
+		return new ResponseEntity<HttpStatus>(HttpStatus.NOT_FOUND);
 	}
 
 	@DeleteMapping("/{usuarioId}")
 	public ResponseEntity<HttpStatus> eliminarPorId(@PathVariable(name = "usuarioId") Long usuarioId) {
-		usuarioService.deleteById(usuarioId);
-		return new ResponseEntity<>(HttpStatus.OK);
+		Usuario usuarioEncontrado = usuarioService.findById(usuarioId);
+		if (usuarioEncontrado != null) {
+			usuarioService.deleteById(usuarioId);
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		return new ResponseEntity<HttpStatus>(HttpStatus.NOT_FOUND);
 	}
 
 }
