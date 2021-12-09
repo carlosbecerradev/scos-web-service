@@ -14,4 +14,6 @@ public interface EmpleadoService {
 
 	Empleado findById(Long empleadoId);
 
+	Collection<String> findTechnicianStatus();
+
 }

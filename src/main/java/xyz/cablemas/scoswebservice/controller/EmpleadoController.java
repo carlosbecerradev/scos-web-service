@@ -68,4 +68,9 @@ public class EmpleadoController {
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
+	@GetMapping("/status")
+	public ResponseEntity<Collection<String>> obtenerEstadosDelTecnico() {
+		return new ResponseEntity<>(empleadoService.findTechnicianStatus(), HttpStatus.OK);
+	}
+
 }
