@@ -57,8 +57,12 @@ public class SedeController {
 
 	@DeleteMapping("/{sedeId}")
 	public ResponseEntity<?> eliminarPorId(@PathVariable Long sedeId) {
-		sedeService.delete(sedeId);
-		return new ResponseEntity<Void>(HttpStatus.OK);
+		Sede sedeEncontrada = sedeService.findById(sedeId);
+		if (sedeEncontrada != null) {
+			sedeService.delete(sedeId);
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		}
+		return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 	}
 
 }
