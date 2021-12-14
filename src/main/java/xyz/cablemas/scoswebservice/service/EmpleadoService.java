@@ -2,6 +2,7 @@ package xyz.cablemas.scoswebservice.service;
 
 import java.util.Collection;
 
+import xyz.cablemas.scoswebservice.dto.EmpleadoDto;
 import xyz.cablemas.scoswebservice.entity.Empleado;
 
 public interface EmpleadoService {
@@ -15,5 +16,7 @@ public interface EmpleadoService {
 	Empleado findById(Long empleadoId);
 
 	Collection<String> findTechnicianStatus();
+
+	EmpleadoDto mapEntityToDto(Empleado empleado);
 
 }

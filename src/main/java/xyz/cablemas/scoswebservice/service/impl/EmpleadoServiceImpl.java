@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AllArgsConstructor;
+import xyz.cablemas.scoswebservice.dto.EmpleadoDto;
 import xyz.cablemas.scoswebservice.entity.Empleado;
 import xyz.cablemas.scoswebservice.entity.EstadoDeTecnico;
 import xyz.cablemas.scoswebservice.repository.EmpleadoRepository;
@@ -46,6 +47,18 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 	@Override
 	public Collection<String> findTechnicianStatus() {
 		return Arrays.asList(EstadoDeTecnico.values()).stream().map(e -> e.toString()).collect(Collectors.toList());
+	}
+
+	@Override
+	public EmpleadoDto mapEntityToDto(Empleado empleado) {
+		return EmpleadoDto.builder().id(empleado.getEmpleadoId()).nombres(empleado.getNombres())
+				.apellidos(empleado.getApellidos()).fotoUrl(empleado.getFotoUrl())
+				.nroDeCarnet(empleado.getNroDeCarnet()).dni(empleado.getDni())
+				.nroDeTelefonoMovil(empleado.getNroDeTelefonoMovil()).sexo(empleado.getSexo())
+				.estado(empleado.getEstado()).usuarioId(empleado.getUsuario().getUsuarioId())
+				.tokenDeNotificacion(empleado.getUsuario().getTokenDeNotificacion())
+				.ubicacion(empleado.getUsuario().getUbicacion()).sede(empleado.getUsuario().getSede().getNombre())
+				.build();
 	}
 
 }

@@ -2,10 +2,11 @@ package xyz.cablemas.scoswebservice.service;
 
 import java.util.Collection;
 
+import xyz.cablemas.scoswebservice.dto.ClienteDto;
 import xyz.cablemas.scoswebservice.entity.Cliente;
 
 public interface ClienteService {
-	
+
 	void save(Cliente cliente);
 
 	void deleteById(Long clienteId);
@@ -14,5 +15,6 @@ public interface ClienteService {
 
 	Cliente findById(Long clienteId);
 
+	ClienteDto mapEntityToDto(Cliente cliente);
 
 }
