@@ -63,7 +63,7 @@ public class Cliente implements Serializable {
 	@JoinColumn(name = "usuario_id", nullable = false, unique = true)
 	private Usuario usuario;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "tipo_de_servicio_id", nullable = false)
 	private TipoDeServicio tipoDeServicio;
 

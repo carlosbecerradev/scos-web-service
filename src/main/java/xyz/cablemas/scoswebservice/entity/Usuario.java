@@ -57,7 +57,7 @@ public class Usuario implements Serializable {
 	@JoinColumn(name = "ubicacion_id", nullable = true, unique = true)
 	private Ubicacion ubicacion;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "sede_id", nullable = false)
 	private Sede sede;
 

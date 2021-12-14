@@ -3,7 +3,6 @@ package xyz.cablemas.scoswebservice.entity;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,7 +36,7 @@ public class ConstanciaDeVisita implements Serializable {
 	@Column(updatable = false, nullable = false)
 	private LocalDateTime fechaDeCreacion;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name = "orden_de_servicio_id", nullable = false, unique = true)
 	private OrdenDeServicio ordenDeServicio;
 
