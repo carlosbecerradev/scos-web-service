@@ -2,6 +2,7 @@ package xyz.cablemas.scoswebservice.service;
 
 import java.util.Collection;
 
+import xyz.cablemas.scoswebservice.dto.EncuestaDeAtencionDto;
 import xyz.cablemas.scoswebservice.entity.EncuestaDeAtencion;
 
 public interface EncuestaDeAtencionService {
@@ -15,5 +16,13 @@ public interface EncuestaDeAtencionService {
 	EncuestaDeAtencion findById(Long encuestaDeAtencionId);
 
 	Collection<String> findAssessments();
+
+	void insertDto(EncuestaDeAtencionDto encuestaDeAtencionDto);
+
+	void omitted(Long ordenDeServicioId);
+
+	EncuestaDeAtencionDto mapEntityToDto(EncuestaDeAtencion encuesta);
+
+	EncuestaDeAtencion findByOrdenDeServicioId(Long ordenDeServicioId);
 
 }
