@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import xyz.cablemas.scoswebservice.dto.EmpleadoDto;
 import xyz.cablemas.scoswebservice.entity.Empleado;
+import xyz.cablemas.scoswebservice.entity.Usuario;
 
 public interface EmpleadoService {
 
@@ -18,5 +19,7 @@ public interface EmpleadoService {
 	Collection<String> findTechnicianStatus();
 
 	EmpleadoDto mapEntityToDto(Empleado empleado);
+
+	Empleado findByUsuario(Usuario usuario);
 
 }

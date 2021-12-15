@@ -19,7 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import xyz.cablemas.scoswebservice.dto.OrdenDeServicioDto;
+import xyz.cablemas.scoswebservice.entity.Empleado;
 import xyz.cablemas.scoswebservice.entity.OrdenDeServicio;
+import xyz.cablemas.scoswebservice.entity.Usuario;
+import xyz.cablemas.scoswebservice.security.AuthenticationService;
+import xyz.cablemas.scoswebservice.service.EmpleadoService;
 import xyz.cablemas.scoswebservice.service.OrdenDeServicioService;
 
 @CrossOrigin("*")
@@ -29,6 +33,10 @@ public class OrdenDeServicioController {
 
 	@Autowired
 	private OrdenDeServicioService ordenDeServicioService;
+	@Autowired
+	private AuthenticationService authenticationService;
+	@Autowired
+	private EmpleadoService empleadoService;
 
 	@GetMapping
 	public ResponseEntity<Collection<OrdenDeServicioDto>> obtenerTodos() {
@@ -71,7 +79,9 @@ public class OrdenDeServicioController {
 	public ResponseEntity<HttpStatus> asignada(@PathVariable(name = "id") Long id) {
 		OrdenDeServicio encontrado = ordenDeServicioService.findById(id);
 		if (encontrado != null) {
-			ordenDeServicioService.assigned(encontrado, null);
+			Usuario usuario = authenticationService.getCurrentLoggedInUser();
+			Empleado empleado = empleadoService.findByUsuario(usuario);
+			ordenDeServicioService.assigned(encontrado, empleado);
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -81,7 +91,9 @@ public class OrdenDeServicioController {
 	public ResponseEntity<HttpStatus> resuelta(@PathVariable(name = "id") Long id) {
 		OrdenDeServicio encontrado = ordenDeServicioService.findById(id);
 		if (encontrado != null) {
-			ordenDeServicioService.resolved(encontrado, null);
+			Usuario usuario = authenticationService.getCurrentLoggedInUser();
+			Empleado empleado = empleadoService.findByUsuario(usuario);
+			ordenDeServicioService.resolved(encontrado, empleado);
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -92,7 +104,9 @@ public class OrdenDeServicioController {
 			@PathParam(value = "motivoDeCancelacion") String motivoDeCancelacion) {
 		OrdenDeServicio encontrado = ordenDeServicioService.findById(id);
 		if (encontrado != null) {
-			ordenDeServicioService.cancelled(encontrado, null, motivoDeCancelacion);
+			Usuario usuario = authenticationService.getCurrentLoggedInUser();
+			Empleado empleado = empleadoService.findByUsuario(usuario);
+			ordenDeServicioService.cancelled(encontrado, empleado, motivoDeCancelacion);
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);

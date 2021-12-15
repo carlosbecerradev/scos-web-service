@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import xyz.cablemas.scoswebservice.dto.EmpleadoDto;
 import xyz.cablemas.scoswebservice.entity.Empleado;
 import xyz.cablemas.scoswebservice.entity.EstadoDeTecnico;
+import xyz.cablemas.scoswebservice.entity.Usuario;
 import xyz.cablemas.scoswebservice.repository.EmpleadoRepository;
 import xyz.cablemas.scoswebservice.service.EmpleadoService;
 
@@ -65,6 +66,12 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 				.tokenDeNotificacion(empleado.getUsuario().getTokenDeNotificacion())
 				.ubicacion(empleado.getUsuario().getUbicacion()).sede(empleado.getUsuario().getSede().getNombre())
 				.build();
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Empleado findByUsuario(Usuario usuario) {
+		return empleadoRepository.findByUsuario(usuario).orElse(null);
 	}
 
 }
