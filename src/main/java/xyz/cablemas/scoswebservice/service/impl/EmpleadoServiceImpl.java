@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,10 +20,15 @@ import xyz.cablemas.scoswebservice.service.EmpleadoService;
 public class EmpleadoServiceImpl implements EmpleadoService {
 
 	private final EmpleadoRepository empleadoRepository;
+	private final PasswordEncoder passwordEncoder;
 
 	@Override
 	@Transactional
 	public void save(Empleado empleado) {
+		String contrasenia = empleado.getUsuario().getContrasenia();
+		if (contrasenia.length() < 60) {
+			empleado.getUsuario().setContrasenia(passwordEncoder.encode(contrasenia));
+		}
 		empleadoRepository.save(empleado);
 	}
 

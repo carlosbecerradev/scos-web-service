@@ -3,6 +3,7 @@ package xyz.cablemas.scoswebservice.service.impl;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,10 +19,16 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Autowired
 	private ClienteRepository repository;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Override
 	@Transactional
 	public void save(Cliente cliente) {
+		String contrasenia = cliente.getUsuario().getContrasenia();
+		if (contrasenia.length() < 60) {
+			cliente.getUsuario().setContrasenia(passwordEncoder.encode(contrasenia));
+		}
 		repository.save(cliente);
 	}
 
