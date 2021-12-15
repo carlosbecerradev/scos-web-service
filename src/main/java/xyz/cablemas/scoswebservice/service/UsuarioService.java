@@ -14,4 +14,6 @@ public interface UsuarioService {
 
 	Usuario findById(Long usuarioId);
 
+	Usuario findByNombreDeUsuario(String nombreDeUsuario);
+
 }
