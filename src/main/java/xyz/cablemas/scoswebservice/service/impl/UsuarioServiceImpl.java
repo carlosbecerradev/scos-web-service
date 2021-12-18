@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,16 +23,10 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-	@Autowired
-	private PasswordEncoder passwordEncoder;
 
 	@Override
 	@Transactional
 	public void save(Usuario usuario) {
-		String contrasenia = usuario.getContrasenia();
-		if (contrasenia.length() < 60) {
-			usuario.setContrasenia(passwordEncoder.encode(contrasenia));
-		}
 		usuarioRepository.save(usuario);
 	}
 

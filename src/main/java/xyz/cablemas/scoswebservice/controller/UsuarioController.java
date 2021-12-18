@@ -5,6 +5,7 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,8 @@ public class UsuarioController {
 
 	@Autowired
 	private UsuarioService usuarioService;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@GetMapping
 	public ResponseEntity<Collection<Usuario>> obtenerTodos() {
@@ -42,6 +45,7 @@ public class UsuarioController {
 
 	@PostMapping
 	public ResponseEntity<HttpStatus> registrar(@RequestBody Usuario usuario) {
+		usuario.setContrasenia(passwordEncoder.encode(usuario.getContrasenia()));
 		usuarioService.save(usuario);
 		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
 	}
