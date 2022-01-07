@@ -32,10 +32,10 @@ public class Ubicacion implements Serializable {
 	@Column(length = 100, nullable = false)
 	private String direccion;
 
-	@Column(nullable = false, columnDefinition = "float(10,6)")
+	@Column(nullable = false, columnDefinition = "float(10,7)")
 	private float latitud;
 
-	@Column(nullable = false, columnDefinition = "float(10,6)")
+	@Column(nullable = false, columnDefinition = "float(10,7)")
 	private float longitud;
 
 	@Column(updatable = false, nullable = false)
