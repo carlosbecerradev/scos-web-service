@@ -62,6 +62,7 @@ public class EncuestaDeAtencionServiceImpl implements EncuestaDeAtencionService 
 		encuesta.setObservacion(encuestaDeAtencionDto.getObservacion());
 		encuesta.setOmitida(false);
 		save(encuesta);
+		ordenDeServicioService.closed(orden);
 	}
 
 	@Override
@@ -74,6 +75,7 @@ public class EncuestaDeAtencionServiceImpl implements EncuestaDeAtencionService 
 		encuesta.setObservacion("Omitida");
 		encuesta.setOmitida(true);
 		save(encuesta);
+		ordenDeServicioService.closed(orden);
 	}
 
 	@Override
