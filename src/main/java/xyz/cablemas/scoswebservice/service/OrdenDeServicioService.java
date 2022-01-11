@@ -30,4 +30,6 @@ public interface OrdenDeServicioService {
 
 	void closed(OrdenDeServicio ordenDeServicio);
 
+	void checked(OrdenDeServicio ordenDeServicio);
+
 }

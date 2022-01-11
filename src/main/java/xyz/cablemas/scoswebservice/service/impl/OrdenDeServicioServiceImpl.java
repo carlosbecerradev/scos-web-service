@@ -138,4 +138,11 @@ public class OrdenDeServicioServiceImpl implements OrdenDeServicioService {
 		save(ordenDeServicio);
 	}
 
+	@Override
+	@Transactional
+	public void checked(OrdenDeServicio ordenDeServicio) {
+		ordenDeServicio.setRevisada(true);
+		save(ordenDeServicio);
+	}
+
 }

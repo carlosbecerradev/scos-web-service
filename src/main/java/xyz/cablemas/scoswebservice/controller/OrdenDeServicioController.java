@@ -122,4 +122,14 @@ public class OrdenDeServicioController {
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
+	@PutMapping("/revisar/{id}")
+	public ResponseEntity<HttpStatus> revisada(@PathVariable(name = "id") Long id) {
+		OrdenDeServicio ordenEncontrada = ordenDeServicioService.findById(id);
+		if (ordenEncontrada != null) {
+			ordenDeServicioService.checked(ordenEncontrada);
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+
 }
