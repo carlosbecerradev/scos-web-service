@@ -60,6 +60,7 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
 		if (usuario != null) {
 			List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 			authorities.add(new SimpleGrantedAuthority(usuario.getRol().name()));
+			authorities.add(new SimpleGrantedAuthority(usuario.getSede().getNombre()));
 			return new User(usuario.getNombreDeUsuario(), usuario.getContrasenia(), usuario.getActivo(), true, true,
 					true, authorities);
 		}
