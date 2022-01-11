@@ -135,7 +135,6 @@ public class OrdenDeServicioServiceImpl implements OrdenDeServicioService {
 	public void closed(OrdenDeServicio ordenDeServicio) {
 		ordenDeServicio.setEstado(EstadoDeOrdenDeServicio.CERRADA.name());
 		ordenDeServicio.setFechaDeCierre(LocalDateTime.now());
-		ordenDeServicio.setRevisada(true);
 		save(ordenDeServicio);
 	}
 
