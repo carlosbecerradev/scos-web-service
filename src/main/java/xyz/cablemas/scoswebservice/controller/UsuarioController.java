@@ -56,6 +56,10 @@ public class UsuarioController {
 		Usuario usuarioEncontrado = usuarioService.findById(usuarioId);
 		if (usuarioEncontrado != null) {
 			usuario.setUsuarioId(usuarioId);
+			if (!usuario.getContrasenia().equalsIgnoreCase(usuarioEncontrado.getContrasenia())
+					|| usuario.getContrasenia().length() < 60) {
+				usuario.setContrasenia(passwordEncoder.encode(usuario.getContrasenia()));
+			}
 			usuarioService.save(usuario);
 			return new ResponseEntity<HttpStatus>(HttpStatus.OK);
 		}
