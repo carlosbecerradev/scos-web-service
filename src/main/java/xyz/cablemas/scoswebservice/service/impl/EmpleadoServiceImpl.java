@@ -58,6 +58,9 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 
 	@Override
 	public EmpleadoDto mapEntityToDto(Empleado empleado) {
+		if(empleado == null) {
+			return null;
+		}
 		return EmpleadoDto.builder().id(empleado.getEmpleadoId()).nombres(empleado.getNombres())
 				.apellidos(empleado.getApellidos()).fotoUrl(empleado.getFotoUrl())
 				.nroDeCarnet(empleado.getNroDeCarnet()).dni(empleado.getDni())
