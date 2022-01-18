@@ -46,4 +46,10 @@ public class TipodeIncidenciaServiceImpl implements TipodeIncidenciaService {
 		return repository.findAll();
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public Object findAllByTipoDeServicioId(Long tipoDeServicioId) {
+		return null;
+	}
+
 }

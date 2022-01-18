@@ -14,4 +14,5 @@ public interface TipodeIncidenciaService {
 	public abstract void delete(Long tipodeincidenciaId);
 	public abstract TipoDeIncidencia findById(Long tipodeincidenciaId);
 	public abstract Collection<TipoDeIncidencia> findAll();
+	public abstract Object findAllByTipoDeServicioId(Long tipoDeServicioId);
 }

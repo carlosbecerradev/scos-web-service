@@ -29,6 +29,11 @@ public class TipodeIncidenciaController {
 		return new ResponseEntity<>(tipodeincidenciaService.findAll(), HttpStatus.OK);
 	}
 
+	@GetMapping("/tipo-de-servicio/id/{tipoDeServicioId}")
+	public ResponseEntity<?> obtenerTodosPorNombreDeTipoDeServicioId(@PathVariable Long tipoDeServicioId) {
+		return new ResponseEntity<>(tipodeincidenciaService.findAllByTipoDeServicioId(tipoDeServicioId), HttpStatus.OK);
+	}
+
 	@GetMapping("/{tipodeincidenciaId}")
 	public ResponseEntity<?> obtenerUnoPorId(@PathVariable Long tipodeincidenciaId) {
 		TipoDeIncidencia tipodeincidencia = tipodeincidenciaService.findById(tipodeincidenciaId);
