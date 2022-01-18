@@ -46,6 +46,11 @@ public class OrdenDeServicioServiceImpl implements OrdenDeServicioService {
 	}
 
 	@Override
+	public Collection<OrdenDeServicio> findAllBySedeName(String name) {
+		return ordenDeServicioRepository.findByClienteUsuarioSedeNombre(name);
+	}
+
+	@Override
 	@Transactional(readOnly = true)
 	public OrdenDeServicio findById(Long ordenDeServicioId) {
 		return ordenDeServicioRepository.findById(ordenDeServicioId).orElse(null);

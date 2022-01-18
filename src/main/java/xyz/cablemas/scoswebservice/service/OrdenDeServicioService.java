@@ -14,6 +14,8 @@ public interface OrdenDeServicioService {
 
 	Collection<OrdenDeServicio> findAll();
 
+	Collection<OrdenDeServicio> findAllBySedeName(String name);
+
 	OrdenDeServicio findById(Long ordenDeServicioId);
 
 	Collection<String> findAllServiceOrdenStatus();

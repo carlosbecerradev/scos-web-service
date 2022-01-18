@@ -45,6 +45,14 @@ public class OrdenDeServicioController {
 		return new ResponseEntity<>(ordenes, HttpStatus.OK);
 	}
 
+	@GetMapping("/sede/{nombre}")
+	public ResponseEntity<Collection<OrdenDeServicioDto>> obtenerTodasPorNombreDeSede(
+			@PathVariable(name = "nombre") String nombre) {
+		Collection<OrdenDeServicioDto> ordenes = ordenDeServicioService.findAllBySedeName(nombre).stream()
+				.map(ordenDeServicioService::mapEntityToDto).collect(Collectors.toList());
+		return new ResponseEntity<>(ordenes, HttpStatus.OK);
+	}
+
 	@GetMapping("/{id}")
 	public ResponseEntity<OrdenDeServicioDto> obtenerUnoPorId(@PathVariable(name = "id") Long id) {
 		OrdenDeServicio encontrado = ordenDeServicioService.findById(id);
