@@ -140,4 +140,24 @@ public class OrdenDeServicioController {
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
+	@GetMapping("/ultima/cliente/id/{clienteId}")
+	public ResponseEntity<OrdenDeServicioDto> obtenerUltimaPorClienteId(
+			@PathVariable(name = "clienteId") Long clienteId) {
+		OrdenDeServicioDto encontrado = ordenDeServicioService.getLastOrderByClientId(clienteId);
+		if (encontrado != null) {
+			return new ResponseEntity<>(encontrado, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+
+	@GetMapping("/ultima/tecnico/id/{tecnicoId}")
+	public ResponseEntity<OrdenDeServicioDto> obtenerUltimaPorTecnicoId(
+			@PathVariable(name = "tecnicoId") Long tecnicoId) {
+		OrdenDeServicioDto encontrado = ordenDeServicioService.getLastOrderByTechnicianId(tecnicoId);
+		if (encontrado != null) {
+			return new ResponseEntity<>(encontrado, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+
 }

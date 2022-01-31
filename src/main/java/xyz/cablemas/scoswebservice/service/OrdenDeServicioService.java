@@ -34,4 +34,8 @@ public interface OrdenDeServicioService {
 
 	void checked(OrdenDeServicio ordenDeServicio);
 
+	OrdenDeServicioDto getLastOrderByClientId(Long id);
+
+	OrdenDeServicioDto getLastOrderByTechnicianId(Long id);
+
 }

@@ -1,6 +1,7 @@
 package xyz.cablemas.scoswebservice.repository;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -29,4 +30,20 @@ public interface OrdenDeServicioRepository extends JpaRepository<OrdenDeServicio
 			+ "INNER JOIN sedes s " + "ON s.sede_id = u.sede_id "
 			+ "WHERE o.estado = 'CERRADA' AND s.nombre = :sede ", nativeQuery = true)
 	Collection<ReporteTecnicoPorOrdenDeServicio> reporteTecnicos(@Param("sede") String sede);
+	
+	@Query(value ="SELECT * FROM db_scos.ordenes_de_servicio o "
+			+ "INNER JOIN db_scos.clientes c "
+			+ "ON o.cliente_id = c.cliente_id "
+			+ "WHERE c.cliente_id = :clienteId "
+			+ "ORDER BY o.fecha_de_creacion DESC "
+			+ "LIMIT 1 ", nativeQuery= true)
+	Optional<OrdenDeServicio> ultimaOrdenDelCliente(@Param("clienteId") Long clienteId);
+	
+	@Query(value="SELECT * FROM db_scos.ordenes_de_servicio o "
+			+ "INNER JOIN db_scos.empleados e "
+			+ "ON o.empleado_id = e.empleado_id "
+			+ "WHERE e.empleado_id = :tecnicoId "
+			+ "ORDER BY o.fecha_de_creacion DESC "
+			+ "LIMIT 1", nativeQuery = true)
+	Optional<OrdenDeServicio> ultimaOrdenDelTecnico(@Param("tecnicoId") Long tecnicoId);
 }

@@ -64,6 +64,9 @@ public class OrdenDeServicioServiceImpl implements OrdenDeServicioService {
 
 	@Override
 	public OrdenDeServicioDto mapEntityToDto(OrdenDeServicio ordenDeServicio) {
+		if (ordenDeServicio == null) {
+			return null;
+		}
 		return OrdenDeServicioDto.builder().id(ordenDeServicio.getOrdenDeServicioId())
 				.tipoDeIncidencia(ordenDeServicio.getTipoDeIncidencia().getNombre())
 				.descripcionDelProblema(ordenDeServicio.getDescripcionDelProblema())
@@ -148,6 +151,18 @@ public class OrdenDeServicioServiceImpl implements OrdenDeServicioService {
 	public void checked(OrdenDeServicio ordenDeServicio) {
 		ordenDeServicio.setRevisada(true);
 		save(ordenDeServicio);
+	}
+
+	@Override
+	public OrdenDeServicioDto getLastOrderByClientId(Long id) {
+		OrdenDeServicio orden = ordenDeServicioRepository.ultimaOrdenDelCliente(id).orElse(null);
+		return mapEntityToDto(orden);
+	}
+
+	@Override
+	public OrdenDeServicioDto getLastOrderByTechnicianId(Long id) {
+		OrdenDeServicio orden = ordenDeServicioRepository.ultimaOrdenDelTecnico(id).orElse(null);
+		return mapEntityToDto(orden);
 	}
 
 }
