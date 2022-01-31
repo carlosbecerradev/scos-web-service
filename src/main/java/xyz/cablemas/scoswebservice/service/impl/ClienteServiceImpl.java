@@ -62,4 +62,10 @@ public class ClienteServiceImpl implements ClienteService {
 				.tipoDeServicio(cliente.getTipoDeServicio().getNombre()).build();
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public ClienteDto findByUsername(String username) {
+		return mapEntityToDto(repository.findByUsuarioNombreDeUsuario(username).orElse(null));
+	}
+
 }

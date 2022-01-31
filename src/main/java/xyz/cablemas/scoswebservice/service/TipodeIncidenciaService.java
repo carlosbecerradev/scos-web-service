@@ -15,4 +15,5 @@ public interface TipodeIncidenciaService {
 	public abstract TipoDeIncidencia findById(Long tipodeincidenciaId);
 	public abstract Collection<TipoDeIncidencia> findAll();
 	public abstract Object findAllByTipoDeServicioId(Long tipoDeServicioId);
+	public abstract Collection<TipoDeIncidencia> findAllByTipoDeServicioName(String tipoDeServicioNombre);
 }

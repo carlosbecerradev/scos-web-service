@@ -16,5 +16,7 @@ public interface ClienteService {
 	Cliente findById(Long clienteId);
 
 	ClienteDto mapEntityToDto(Cliente cliente);
+	
+	ClienteDto findByUsername(String username);
 
 }

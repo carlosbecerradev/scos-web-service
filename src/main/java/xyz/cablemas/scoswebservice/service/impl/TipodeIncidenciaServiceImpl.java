@@ -49,7 +49,13 @@ public class TipodeIncidenciaServiceImpl implements TipodeIncidenciaService {
 	@Override
 	@Transactional(readOnly = true)
 	public Object findAllByTipoDeServicioId(Long tipoDeServicioId) {
-		return null;
+		return repository.findByTipoDeServicioTipoDeServicioId(tipoDeServicioId);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Collection<TipoDeIncidencia> findAllByTipoDeServicioName(String tipoDeServicioNombre) {
+		return repository.findByTipoDeServicioNombre(tipoDeServicioNombre);
 	}
 
 }

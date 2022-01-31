@@ -9,4 +9,6 @@ import xyz.cablemas.scoswebservice.entity.TipoDeIncidencia;
 public interface TipodeIncidenciaRepository extends JpaRepository<TipoDeIncidencia, Long> {
 
 	Collection<TipoDeIncidencia> findByTipoDeServicioTipoDeServicioId(Long tipoDeServicioId);
+
+	Collection<TipoDeIncidencia> findByTipoDeServicioNombre(String tipoDeServicioNombre);
 }
