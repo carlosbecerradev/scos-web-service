@@ -22,4 +22,5 @@ public interface EmpleadoService {
 
 	Empleado findByUsuario(Usuario usuario);
 
+	EmpleadoDto findByUsername(String username);
 }

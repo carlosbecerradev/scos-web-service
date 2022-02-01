@@ -77,4 +77,11 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		return empleadoRepository.findByUsuario(usuario).orElse(null);
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public EmpleadoDto findByUsername(String username) {
+		Empleado empleado = empleadoRepository.findByUsuarioNombreDeUsuario(username).orElse(null);
+		return mapEntityToDto(empleado);
+	}
+
 }

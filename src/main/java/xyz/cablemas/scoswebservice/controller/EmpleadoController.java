@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import xyz.cablemas.scoswebservice.dto.EmpleadoDto;
 import xyz.cablemas.scoswebservice.entity.Empleado;
 import xyz.cablemas.scoswebservice.service.EmpleadoService;
 
@@ -71,6 +72,16 @@ public class EmpleadoController {
 	@GetMapping("/status")
 	public ResponseEntity<Collection<String>> obtenerEstadosDelTecnico() {
 		return new ResponseEntity<>(empleadoService.findTechnicianStatus(), HttpStatus.OK);
+	}
+
+	@GetMapping("/nombre-de-usuario/{nombreDeUsuario}")
+	public ResponseEntity<EmpleadoDto> obtenerUnoPorNombreDeUsuarioo(
+			@PathVariable(name = "nombreDeUsuario") String nombreDeUsuario) {
+		EmpleadoDto empleadoEncontrado = empleadoService.findByUsername(nombreDeUsuario);
+		if (empleadoEncontrado != null) {
+			return new ResponseEntity<>(empleadoEncontrado, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 }
